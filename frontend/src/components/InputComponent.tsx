@@ -1,7 +1,6 @@
-import React, {DetailedHTMLProps, InputHTMLAttributes, useState} from "react";
-import {API_BASE_URL} from "../config";
-import {ITask} from "../App";
-import {Button, Col, Row} from "react-bootstrap";
+import React, { DetailedHTMLProps, InputHTMLAttributes, useState } from "react";
+import { API_BASE_URL } from "../config";
+import { ITask } from "../App";
 
 interface IProps {
     setTask: React.Dispatch<React.SetStateAction<ITask[]>>
@@ -22,7 +21,7 @@ const InputComponent: React.FC<IProps> = ({setTask}) => {
             method: 'POST',
             body: newTaskInput
         }
-        fetch('${API_BASE_URL}/tasks', options)
+        fetch(`${API_BASE_URL}/tasks`, options)
             .then(response => response.json())
             .then(newTask => setTask(prevState => [...prevState, newTask]))
             .catch(error => {
