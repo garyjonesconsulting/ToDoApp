@@ -27,10 +27,10 @@ const App: React.FC = () => {
     }, [])
 
     return (
-        <div className="App">
+        <div className={"App p-3 mb-2 bg-primary text-white"}>
             <main>
                 <Container>
-                    <h1 className={"display-1 text-center"}>Todo App</h1>
+                    <h1 className={"display-1 text-left"}>Todo App</h1>
                     <InputComponent setTask={setTasks}/>
                     <TaskListComponent setTasks={setTasks} tasks={tasks}/>
                 </Container>

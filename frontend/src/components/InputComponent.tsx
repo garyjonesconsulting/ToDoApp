@@ -35,8 +35,9 @@ const InputComponent: React.FC<IProps> = ({setTask}) => {
     }
 
     return (
-        <Row className={"add-task-item mt-5 mb-5"}>
-            <Col md={10}>
+        <Row className={"add-task-item mt-3 mb-3"}>
+            <Col md={3}/>
+            <Col md={4}>
                 <input
                     className={"w-100"}
                     type="text"
@@ -49,6 +50,7 @@ const InputComponent: React.FC<IProps> = ({setTask}) => {
             <Col md={2}>
                 <Button onClick={addTask}>Add</Button>
             </Col>
+            <Col md={3}/>
         </Row>
     )
 }
