@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import InputComponent from "./components/InputComponent";
-// import TaskListComponent from "./components/TaskListComponent";
+import TaskListComponent from "./components/TaskListComponent";
 import {API_BASE_URL} from "./config";
 import {Container} from "react-bootstrap";
-import TaskListComponent from './components/TaskListComponent';
 
 export interface ITask {
     id: number
@@ -13,24 +12,31 @@ export interface ITask {
 }
 
 const App: React.FC = () => {
-  const [tasks, setTask] = useState<ITask[]>([]);
+    const [tasks, setTasks] = useState<ITask[]>([])
 
-  useEffect( () => {
-     
+    useEffect(() => {
+        const options = {method: 'GET'}
 
-  }, [])
+        fetch(`${API_BASE_URL}/tasks`, options)
+            .then(response => response.json())
+            .then(fetchedTasks => setTasks(fetchedTasks))
+            .catch(error => {
+                console.log(error)
+                alert("couldn't fetch tasks")
+            })
+    }, [])
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Todo App</h1>
-        </header>
-        <main>
-            <InputComponent setTask={setTask}/>
-            <TaskListComponent setTask={setTask} tasks={tasks}/>
-        </main>
-    </div>
-  );
+    return (
+        <div className="App">
+            <main>
+                <Container>
+                    <h1 className={"display-1 text-center"}>Todo App</h1>
+                    <InputComponent setTask={setTasks}/>
+                    <TaskListComponent setTasks={setTasks} tasks={tasks}/>
+                </Container>
+            </main>
+        </div>
+    );
 }
 
 export default App;
